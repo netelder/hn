@@ -7,6 +7,7 @@
     See: http://necolas.github.com/normalize.css/
   -->
   <link rel="stylesheet" href="/css/normalize.css">
+
   <!--
     application.css is where you put your styles
   -->
@@ -18,6 +19,18 @@
   <title></title>
 </head>
 <body>
+  <div id="nav_bar">
+    <nav id="nav">
+      <div id="home"><a href='/'>Home</a></div>
+      <div id="comments"><a href='/comments'>comments</a></div>
+      <div id="submit"><a href='/posts/new'>submit</a></div>
+      <% unless logged_in? %>
+        <div id="login"><a href='/login'>login</a></div>
+        <% else %>
+        <div id="username"><a href='/profile'><%= @current_user.username %></a></div>
+      <% end %>
+    </nav>
+  </div>
   <%= yield %>
 </body>
 </html>
