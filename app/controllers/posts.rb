@@ -1,24 +1,24 @@
-get '/post/:id' do
-
-  erb :show_post_with_comments #also allows for adding comment?
+get '/posts/new' do
+  
+  erb :post
 end
 
-post '/post/:id' do
+get '/posts/:id' do
+  @post=Post.find(params[:id])
+  p @comments = Comment.where("post_id = ?", @post.id)
+  erb :show_post_comments #also allows for adding comment?
+end
+
+post '/posts/:id' do
 
   redirect '/'
 end
 
-get '/posts/new' do
-  erb :post
-
-end
-
-
-
 post '/posts' do
   @post = Post.new(params)
+  @post.user = current_user
   @post.save
-  redirect "/post/#{@post.id}"
+  redirect "/posts/#{@post.id}"
 
 end
 

@@ -13,6 +13,11 @@ get '/login' do
   erb :login_signup
 end
 
+get '/profile' do
+  @user = current_user
+  erb :profile
+end
+
 post '/users' do
   user = User.find_by_username(params["username"])
   unless user

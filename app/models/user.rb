@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :posts
 
-  validates :username, :uniqueness => true
+  validates :username, uniqueness: true
+  validates :username, presence: true
 
   include BCrypt
   
@@ -16,6 +17,4 @@ class User < ActiveRecord::Base
     @password = Password.create(new_password)
     self.password_hash = @password
   end
-
-
 end
