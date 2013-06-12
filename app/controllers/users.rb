@@ -3,14 +3,25 @@ get '/users/:id' do
   erb :profile
 end
 
-get '/users/:id/comments' do
+get '/users/comments/:id' do
+  @user = User.find(params[:id])
+  @comments = Comment.where("user_id = ?", @user.id)
+  erb :user_comments
+end
 
-  erb :show_all_user_comments
+get '/users/posts/:id' do
+  @user = current_user
+  @posts = Post.where("user_id = ?", @user.id)
+  erb :user_posts
 end
 
 get '/login' do 
-
   erb :login_signup
+end
+
+get '/logout' do
+  session.clear
+  redirect '/'
 end
 
 get '/profile' do

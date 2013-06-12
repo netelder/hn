@@ -1,6 +1,9 @@
 get '/posts/new' do
-  
-  erb :post
+  if logged_in?
+    erb :post
+  else
+    redirect '/login'
+  end
 end
 
 get '/posts/:id' do
@@ -22,7 +25,3 @@ post '/posts' do
 
 end
 
-get '/posts/users/:id' do
-
-  erb :show_all_user_posts
-end

@@ -1,3 +1,9 @@
+get '/comments' do
+  @comments = Comment.all
+  erb :user_comments
+end
+
+
 post '/comments' do
   comment = Comment.new(body: params["body"])
   comment.user = current_user
@@ -5,3 +11,4 @@ post '/comments' do
   comment.save
   redirect '/'
 end
+

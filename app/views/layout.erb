@@ -28,6 +28,7 @@
         <div id="login"><a href='/login'>login</a></div>
         <% else %>
         <div id="username"><a href='/profile'><%= @current_user.username %></a></div>
+        <div id="logout"><a href='/logout'>logout</a></div>
       <% end %>
     </nav>
   </div>

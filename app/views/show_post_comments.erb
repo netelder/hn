@@ -1,5 +1,7 @@
 
 <div class="container">
+
+  <div id="post_title"> <%= @post.title %> </div>
   <form name="add comments" action="/comments" method='POST'>
     <input type="hidden" value ="<%=@post.id%>" name="post_id">
     <textarea row="6" col="40" placeholder="add comment" name="body"></textarea>
